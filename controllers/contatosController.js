@@ -1,14 +1,10 @@
-//para testes , assumindo que o usuario logado seja o id=1
-const uid = 1;
 
 // iportando os conatos dos usuarios
-
-
 module.exports ={
     listarContatos: (req,res) => {
         // iportando os conatos dos usuarios
 
-        let contatos = require(`../database/contatos_${uid}.json`)
+        let contatos = require(`../database/contatos_${req.usuario.id}.json`)
 
         //Enviando a view para o cliente
         res.render(
@@ -21,7 +17,7 @@ module.exports ={
 
     capturarContato: (req, res)=>{
         // iportando os conatos dos usuarios
-        let contatos = require(`../database/contatos_${uid}.json`)
+        let contatos = require(`../database/contatos_${req.usuario.id}.json`)
 
         // Descobrir o ID que o usuário quer...
         let idDoContato = req.params.id;
@@ -29,7 +25,7 @@ module.exports ={
         //Encontrar no array de contatos que tem o id desejado.
         let contato = contatos.find(
             (c) => {
-                return c.id == idDoContato
+                return c.id == idDoContato;
                 
             } 
         );
